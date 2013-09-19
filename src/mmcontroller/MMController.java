@@ -7,6 +7,7 @@ package mmcontroller;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import net.java.games.input.*;
 import net.java.games.input.Component.Identifier;
+
 /**
  *
  * @author yzhou53
@@ -25,7 +26,7 @@ public class MMController extends Thread {
             }
         }
         safeToStart = true;
-        queue = new ConcurrentLinkedQueue<>();
+        queue = new ConcurrentLinkedQueue<Event>();
     }
 
     public void run() {
@@ -59,34 +60,42 @@ public class MMController extends Thread {
         mc.start();
     }
 
-    void LX(double value){};
-    void LY(double value){};
-    void RX(double value){};
-    void RY(double value){};
-    void LShoulder(boolean down){};
-    void RShoulder(boolean down){};
-    void ZShoulder(boolean down){};
+    public void LX(double value) {
+    }
+
+    public void LY(double value) {
+    }
+
+    public void RX(double value) {
+    }
+
+    public void RY(double value) {
+    }
+
+    public void LShoulder(boolean down) {
+    }
+
+    public void RShoulder(boolean down) {
+    }
+
+    public void ZShoulder(boolean down) {
+    }
+
     
     private void dispatch(Event e) {
-        if(e.getComponent().getIdentifier().equals(Component.Identifier.Axis.X)){
+        if (e.getComponent().getIdentifier().equals(Component.Identifier.Axis.X)) {
             LX(e.getValue());
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Axis.Y)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Axis.Y)) {
             LY(e.getValue());
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Axis.Z)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Axis.Z)) {
             RX(e.getValue());
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Axis.RZ)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Axis.RZ)) {
             RY(e.getValue());
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Button._7)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Button._7)) {
             LShoulder(e.getValue() == 1.0);
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Button._6)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Button._6)) {
             RShoulder(e.getValue() == 1.0);
-        }
-        else if(e.getComponent().getIdentifier().equals(Component.Identifier.Button._5)){
+        } else if (e.getComponent().getIdentifier().equals(Component.Identifier.Button._5)) {
             ZShoulder(e.getValue() == 1.0);
         }
     }
